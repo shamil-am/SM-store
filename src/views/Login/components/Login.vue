@@ -1,16 +1,7 @@
 <template>
   <v-col cols="12" md="4" offset-md="4" class="login">
     <h2 class="text-center">Daxil ol</h2>
-    <div class="social-buttons">
-      <v-btn depressed color="primary">
-        <img src="../../../assets/facebook-2 1.png" alt="facebook" />
-        Facebook ilə
-      </v-btn>
-      <v-btn depressed color="error">
-        <img src="../../../assets/google-icon 1.png" alt="google" />
-        Google ilə
-      </v-btn>
-    </div>
+    <SocialButtons />
     <p class="or">və ya</p>
     <v-form v-model="valid">
       <v-container>
@@ -39,6 +30,9 @@
               @click:append="show = !show"
             ></v-text-field>
           </v-col>
+          <div class="forgot-password">
+            <a href="http://" target="_blank">Şifrəmi unutdum</a>
+          </div>
           <v-btn block color="black" dark> Daxil ol </v-btn>
         </v-row>
       </v-container>
@@ -47,7 +41,11 @@
 </template>
 
 <script>
+import SocialButtons from "./SocialButtons.vue";
 export default {
+  components: {
+    SocialButtons,
+  },
   data: () => ({
     valid: false,
     email: "",

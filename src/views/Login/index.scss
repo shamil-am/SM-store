@@ -1,18 +1,18 @@
 .login-signup {
-  background-color: #E5E5E5;
+  background-color: #e5e5e5;
   height: 100vh;
   .tab-buttons {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
-    border-bottom: 2px solid #E0E0E0;
+    border-bottom: 2px solid #e0e0e0;
     .login-btn,
     .signup-btn {
       flex-basis: 50%;
       text-align: center;
       border-bottom: 2px solid transparent;
-      padding-bottom: 24px;
+      padding-bottom: 1.5rem;
       &:hover {
         cursor: pointer;
       }
@@ -22,10 +22,11 @@
       }
     }
   }
-  .login {
+  .login,
+  .signup {
     background-color: white;
     padding: 2rem 2.5rem;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     h2 {
       margin-bottom: 2rem;
     }
@@ -36,8 +37,8 @@
       gap: 1rem;
       margin-bottom: 1rem;
       button {
-        width: 142px;
-        height: 32px;
+        width: 9rem;
+        height: 2rem;
         text-transform: unset !important ;
         img {
           margin-right: 1rem;
@@ -49,11 +50,29 @@
       margin-bottom: 1rem;
       text-align: center;
     }
-    form{
-      .v-input__slot{
-        border-radius: 8px;
-        background-color: #F2F2F2;
+  }
+  .login {
+    form {
+      .v-input__slot {
+        border-radius: 0.5rem;
+        background-color: #f2f2f2;
+        fieldset {
+          border: 0;
+        }
       }
+      .forgot-password {
+        width: 100%;
+        text-align: right;
+        margin-bottom: 3rem;
+        a {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  .signup {
+    .btn-signup {
+      margin-top: 3rem;
     }
   }
 }
