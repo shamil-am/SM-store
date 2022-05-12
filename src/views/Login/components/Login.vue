@@ -1,0 +1,63 @@
+<template>
+  <v-col cols="12" md="4" offset-md="4" class="login">
+    <h2 class="text-center">Daxil ol</h2>
+    <div class="social-buttons">
+      <v-btn depressed color="primary">
+        <img src="../../../assets/facebook-2 1.png" alt="facebook" />
+        Facebook ilə
+      </v-btn>
+      <v-btn depressed color="error">
+        <img src="../../../assets/google-icon 1.png" alt="google" />
+        Google ilə
+      </v-btn>
+    </div>
+    <p class="or">və ya</p>
+    <v-form v-model="valid">
+      <v-container>
+        <v-row>
+          <v-col cols="12 pa-0">
+            <span for="">Email</span>
+            <v-text-field
+              v-model="email"
+              :rules="emailRules"
+              required
+              outlined
+              placeholder="Emailinizi daxil edin"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12 pa-0">
+            <span for="">Şifrə</span>
+            <v-text-field
+              v-model="password"
+              :rules="passwordRules"
+              required
+              outlined
+              placeholder="Şifrə daxil edin"
+              :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+              :type="show ? 'text' : 'password'"
+              class="input-group--focused"
+              @click:append="show = !show"
+            ></v-text-field>
+          </v-col>
+          <v-btn block color="black" dark> Daxil ol </v-btn>
+        </v-row>
+      </v-container>
+    </v-form>
+  </v-col>
+</template>
+
+<script>
+export default {
+  data: () => ({
+    valid: false,
+    email: "",
+    emailRules: [
+      (v) => !!v || "E-mail is required",
+      (v) => /.+@.+/.test(v) || "E-mail must be valid",
+    ],
+    show: false,
+    password: "",
+    passwordRules: [(v) => !!v || "Şifrə daxil edin"],
+  }),
+};
+</script>
