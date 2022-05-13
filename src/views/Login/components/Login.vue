@@ -4,7 +4,7 @@
     <SocialButtons />
     <p class="or">və ya</p>
     <ValidationObserver v-slot="{ handleSubmit }">
-      <v-form v-model="valid">
+      <v-form>
         <v-container>
           <v-row>
             <v-col cols="12 pa-0">
@@ -57,7 +57,6 @@ export default {
     ValidationProvider,
   },
   data: () => ({
-    valid: false,
     email: "",
     show: false,
     password: "",
