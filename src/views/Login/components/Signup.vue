@@ -8,19 +8,19 @@
         <v-row>
           <v-col cols="12" class="py-0" md="6">
             <span for="">Ad</span>
-            <v-text-field v-model="name" :rules="nameRules" required outlined placeholder="Adınızı daxil edin"></v-text-field>
+            <v-text-field v-model="user.name" :rules="nameRules" required outlined placeholder="Adınızı daxil edin"></v-text-field>
           </v-col>
           <v-col cols="12" class="py-0" md="6">
             <span for="">Email</span>
-            <v-text-field v-model="email" :rules="emailRules" required outlined placeholder="Emailinizi daxil edin"> </v-text-field>
+            <v-text-field v-model="user.email" :rules="emailRules" required outlined placeholder="Emailinizi daxil edin"> </v-text-field>
           </v-col>
           <v-col cols="12" class="py-0" md="6">
             <span for="">Şifrə</span>
-            <v-text-field v-model="password" :rules="passwordRules" required outlined placeholder="Şifrə daxil edin"></v-text-field>
+            <v-text-field v-model="user.password" :rules="passwordRules" required outlined placeholder="Şifrə daxil edin"></v-text-field>
           </v-col>
           <v-col cols="12" class="py-0" md="6">
             <span for="">Şifrə təkrarı</span>
-            <v-text-field v-model="confirmPassword" :rules="confirmPasswordRules.concat(passwordConfirmationRule)" required outlined placeholder="Şifrə təkrarı"></v-text-field>
+            <v-text-field v-model="user.confirmPassword" :rules="confirmPasswordRules.concat(passwordConfirmationRule)" required outlined placeholder="Şifrə təkrarı"></v-text-field>
           </v-col>
           <v-btn block color="black" dark class="btn-signup" @click="submit"> Qeydiyyatdan keç </v-btn>
         </v-row>
@@ -31,18 +31,24 @@
 
 <script>
 import SocialButtons from "./SocialButtons.vue";
+import CustomerService from "../../../api/customer.service";
 
 export default {
   components: {
     SocialButtons,
   },
   data: () => ({
+    user: {
+      name: "",
+      surname: "",
+      phone: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
     valid: false,
-    name: "",
     nameRules: [(v) => !!v || "Ad boş buraxıla bilməz"],
-    email: "",
     emailRules: [(v) => !!v || "E-mail buraxıla bilməz", (v) => /.+@.+/.test(v) || "Doğru email formatı daxil edin"],
-    password: "",
     passwordRules: [
       (v) => !!v || "Şifrə daxil edin",
       (v) => v.length >= 8 || "8 simvoldan az ola bilmez",
@@ -55,14 +61,14 @@ export default {
         }
       },
     ],
-    confirmPassword: "",
     confirmPasswordRules: [(v) => !!v || "Tekara sifre daxil edin"],
   }),
   methods: {
-    submit() {
+    async submit() {
       let isValid = this.$refs.form.validate();
       if (isValid) {
-        alert("registered");
+        let response = await CustomerService.addCustomer(this.user);
+        response?.status === 201 ? alert("registered") : alert("Error occured");
       }
     },
   },
