@@ -39,17 +39,8 @@
 
 <script>
 import SocialButtons from "./SocialButtons.vue";
-import { ValidationObserver, ValidationProvider, extend } from "vee-validate";
-import { email, required } from "vee-validate/dist/rules";
+import { ValidationObserver, ValidationProvider } from "vee-validate";
 
-extend("email", {
-  ...email,
-  message: "Yalnis email formati",
-});
-extend("required", {
-  ...required,
-  message: "Zehmet olmasa qeyd edin",
-});
 export default {
   components: {
     SocialButtons,
