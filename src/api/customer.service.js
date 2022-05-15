@@ -21,11 +21,9 @@ class Customer {
       let customer = await axios.post(url, body, {
         headers: headers,
       });
-      if (customer) {
-        return customer;
-      }
+      return customer;
     } catch (error) {
-      return error;
+      return false;
     }
   }
 }

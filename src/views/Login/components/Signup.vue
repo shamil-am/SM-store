@@ -11,6 +11,14 @@
             <v-text-field v-model="user.name" :rules="nameRules" required outlined placeholder="Adınızı daxil edin"></v-text-field>
           </v-col>
           <v-col cols="12" class="py-0" md="6">
+            <span for="">Soyad</span>
+            <v-text-field v-model="user.surname" :rules="surnameRules" required outlined placeholder="Soyadınızı daxil edin"></v-text-field>
+          </v-col>
+          <v-col cols="12" class="py-0" md="6">
+            <span for="">Telefon</span>
+            <v-text-field v-model="user.phone" required outlined placeholder="Telefon nömrəsi daxil edin"></v-text-field>
+          </v-col>
+          <v-col cols="12" class="py-0" md="6">
             <span for="">Email</span>
             <v-text-field v-model="user.email" :rules="emailRules" required outlined placeholder="Emailinizi daxil edin"> </v-text-field>
           </v-col>
@@ -48,6 +56,7 @@ export default {
     },
     valid: false,
     nameRules: [(v) => !!v || "Ad boş buraxıla bilməz"],
+    surnameRules: [(v) => !!v || "Soyad boş buraxıla bilməz"],
     emailRules: [(v) => !!v || "E-mail buraxıla bilməz", (v) => /.+@.+/.test(v) || "Doğru email formatı daxil edin"],
     passwordRules: [
       (v) => !!v || "Şifrə daxil edin",
@@ -74,7 +83,7 @@ export default {
   },
   computed: {
     passwordConfirmationRule() {
-      return () => this.password === this.confirmPassword || "Şifrə eyni deyil";
+      return () => this.user.password === this.user.confirmPassword || "Şifrə eyni deyil";
     },
   },
 };
