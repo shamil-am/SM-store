@@ -1,0 +1,21 @@
+@import "../common/variables";
+nav {
+  menu {
+    width: 100%;
+    background-color: $primary-bg-dark;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 1rem 2rem;
+    a {
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: $text-white;
+      &:hover {
+        color: $primary-pink;
+      }
+    }
+  }
+}

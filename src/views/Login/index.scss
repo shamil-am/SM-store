@@ -1,3 +1,5 @@
+@import "../../common/variables";
+
 .login-signup {
   background-color: #e5e5e5;
   height: 100vh;
@@ -17,8 +19,8 @@
         cursor: pointer;
       }
       &.active {
-        color: #ed008c;
-        border-bottom: 2px solid #ed008c;
+        color: $primary-pink;
+        border-bottom: 2px solid $primary-pink;
       }
     }
   }

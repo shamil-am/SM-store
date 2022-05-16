@@ -13,7 +13,7 @@
               </ValidationProvider>
             </v-col>
             <v-col cols="12 pa-0">
-              <ValidationProvider name="password" rules="required" v-slot="{ errors }">
+              <ValidationProvider name="sifrə" rules="required" v-slot="{ errors }">
                 <v-text-field
                   v-model="password"
                   :error-messages="errors"
@@ -54,7 +54,7 @@ export default {
   }),
   methods: {
     async submit() {
-      alert("submitting!");
+      alert("Welcome!");
     },
   },
 };

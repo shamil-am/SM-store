@@ -5,21 +5,14 @@ extend("password", {
   message: "En azi 1 reqem daxil edin",
   validate: (v) => {
     let numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-    if (!v.split("").find((smyb) => numbers.includes(Number(smyb)))) {
-      return false;
-    } else {
-      return true;
-    }
+    return v.split("").find((smyb) => numbers.includes(Number(smyb))) ? true : false;
   },
 });
 
 extend("confirmPassword", {
   params: ["otherValue"],
   validate: (value, { otherValue }) => {
-    if (value === otherValue) {
-      return true;
-    }
-    return false;
+    return value === otherValue ? true : false;
   },
   message: "Sifre eyni deyil",
 });

@@ -3,8 +3,8 @@
     <h2 class="text-center">Qeydiyyat</h2>
     <SocialButtons />
     <p class="or">və ya</p>
-    <ValidationObserver>
-      <v-form v-model="valid" ref="form">
+    <ValidationObserver v-slot="{ handleSubmit }">
+      <v-form>
         <v-container>
           <v-row>
             <v-col cols="12" class="py-0" md="6">
@@ -78,7 +78,7 @@
                 ></v-text-field>
               </ValidationProvider>
             </v-col>
-            <v-btn block color="black" dark class="btn-signup" @click="submit"> Qeydiyyatdan keç </v-btn>
+            <v-btn block color="black" dark class="btn-signup" @click="handleSubmit(submit)"> Qeydiyyatdan keç </v-btn>
           </v-row>
         </v-container>
       </v-form>
@@ -88,8 +88,10 @@
 
 <script>
 import SocialButtons from "./SocialButtons.vue";
-// import CustomerService from "../../../api/customer.service";
+import CustomerService from "../../../api/customer.service";
 import { ValidationObserver, ValidationProvider } from "vee-validate";
+import alertify from "alertifyjs";
+alertify.set("notifier", "position", "top-right");
 
 export default {
   components: {
@@ -106,20 +108,13 @@ export default {
       password: "",
       confirmPassword: "",
     },
-    valid: false,
   }),
   methods: {
     async submit() {
-      // let isValid = this.$refs.form.validate();
-      // if (isValid) {
-      //   let response = await CustomerService.addCustomer(this.user);
-      //   response?.status === 201 ? alert("registered") : alert("Error occured");
-      // }
-    },
-  },
-  computed: {
-    passwordConfirmationRule() {
-      return () => this.user.password === this.user.confirmPassword || "Şifrə eyni deyil";
+      let response = await CustomerService.addCustomer(this.user);
+      response?.status === 201
+        ? alertify.success("Qeydiyyat uğurlu oldu!")
+        : alertify.alert().set({ transition: "zoom", message: "Xəta baş verdi!" }).show();
     },
   },
 };
