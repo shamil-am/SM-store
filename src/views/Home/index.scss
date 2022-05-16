@@ -1,0 +1,44 @@
+@import "../../common/variables";
+.home {
+  section {
+    .v-card {
+      height: 440px;
+      max-width: 100%;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      .v-card__title {
+        font-size: 1rem;
+        line-height: 1.5rem;
+        padding: 1rem 0;
+      }
+      .v-card__text {
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .text-subtitle-1 {
+          color: $primary-pink;
+          font-weight: bold !important;
+        }
+      }
+      .btn-like{
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+    margin-top: 1rem;
+    p {
+      margin: 0.5rem 0;
+      font-weight: bold;
+    }
+  }
+  section.add {
+    img {
+      width: 100%;
+    }
+  }
+}

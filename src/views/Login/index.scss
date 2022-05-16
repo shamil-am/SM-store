@@ -2,7 +2,7 @@
 
 .login-signup {
   background-color: #e5e5e5;
-  height: 100vh;
+  padding: 2rem 0;
   .tab-buttons {
     display: flex;
     justify-content: space-between;
@@ -73,6 +73,16 @@
     }
   }
   .signup {
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
     .btn-signup {
       margin-top: 3rem;
     }

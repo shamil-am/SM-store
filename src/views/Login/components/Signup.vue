@@ -40,6 +40,7 @@
                   placeholder="Telefon nömrəsi daxil edin"
                   :error-messages="errors"
                   :success="valid"
+                  type="number"
                 ></v-text-field>
               </ValidationProvider>
             </v-col>

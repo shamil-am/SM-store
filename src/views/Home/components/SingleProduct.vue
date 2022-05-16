@@ -1,29 +1,21 @@
 <template>
   <v-col cols="3">
-    <v-card class="mx-auto my-4 pa-4" max-width="100%">
+    <v-card class="mx-auto">
       <v-img height="200" :src="product.image.url" contain></v-img>
-
       <v-card-title>{{ product.name }}</v-card-title>
+      <v-spacer></v-spacer>
+      <v-rating :value="4.5" color="amber" dense half-increments readonly size="14"></v-rating>
       <v-card-text>
-        <!-- <v-row align="center" class="mx-0">
-                <v-rating :value="product.rating.rate" color="amber" dense half-increments readonly size="14"></v-rating>
-                <div class="grey--text ms-4">{{ product.rating.rate }} / {{ product.rating.count }}</div>
-              </v-row> -->
+        <div class="text-subtitle-1">{{ product.price.raw }} ₼</div>
+        <div class="text-subtitle-1">
+          <v-btn class="ma-2" text icon color="blue lighten-2">
+            <v-icon>mdi-cart</v-icon>
+          </v-btn>
+        </div>
       </v-card-text>
-
-      <v-card-text>
-        <div class="my-4 text-subtitle-1">{{ product.categories[0].name }}</div>
-        <!-- <div class="product-description">{{ product.description }}</div> -->
-      </v-card-text>
-      <v-card-actions>
-        <!-- <router-link :to="`/products/${product.id}`">
-                <v-btn outlined rounded color="deep-purple"> More </v-btn>
-              </router-link>
-              <v-spacer></v-spacer>
-              <v-btn icon @click="likeProduct(product)">
-                <v-icon :color="alreadyLiked">mdi-heart</v-icon>
-              </v-btn> -->
-      </v-card-actions>
+      <v-btn class="ma-2 btn-like" text icon color="gray lighten-2">
+        <v-icon>mdi-heart</v-icon>
+      </v-btn>
     </v-card>
   </v-col>
 </template>
