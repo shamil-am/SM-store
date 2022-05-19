@@ -1,5 +1,4 @@
 import api from "./_axios";
-import Commerce from "@chec/commerce.js";
 class Customer {
   async addCustomer({ name, surname, phone, email }) {
     const id = new Date().getTime();
@@ -18,11 +17,14 @@ class Customer {
       return false;
     }
   }
-
-  async loginCustomer(email) {
-    const commerce = new Commerce(process.env.VUE_APP_PUBLIC_KEY);
-    let response = await commerce.customer.login(email, "http://localhost:8080/#/account");
-    return response;
+  async login(email, password) {
+    return new Promise((resolve, reject) => {
+      if (email === "test@gmail.com" && password === "test") {
+        resolve({ email, password });
+      } else {
+        reject("Mail adresi vəya şifrə səhfdir");
+      }
+    });
   }
 }
 

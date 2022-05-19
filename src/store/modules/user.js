@@ -10,10 +10,7 @@ export const user = {
   },
   getters: {
     isAuthenticated(state) {
-      console.log(state.user);
-      console.log(localStorage.getItem("commercejs_customer_token"));
-      
-      return state.user || localStorage.getItem("commercejs_customer_token") ? true : false;
+      return state.user ? true : false;
     },
   },
 };

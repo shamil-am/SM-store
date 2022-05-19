@@ -46,7 +46,6 @@ export default {
     },
     logOut() {
       this.setUser(null);
-      localStorage.clear();
       this.$router.push({ name: "LoginPage" });
       alert("Cixis edildi.")
     },

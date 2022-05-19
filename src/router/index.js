@@ -15,7 +15,6 @@ const routes = [
       { name: "AccountPage", path: "account", component: () => import("../views/Account"), meta: { requiresAuth: true } },
     ],
   },
-  { name: "AccountCheck", path: "/account/:key", component: () => import("../common/CheckAccount.vue") },
   { name: "NotFound", path: "*", component: () => import("../common/NotFound.vue") },
 ];
 
@@ -25,16 +24,13 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   let isAuthenticated = store.getters["user/isAuthenticated"];
-  console.log(isAuthenticated);
   
-
   if (to.meta.requiresAuth && !isAuthenticated) {
     return next({ name: "LoginPage" });
   }
   if (to.name === "LoginPage" && isAuthenticated && from.name !== null) {
     return next(false);
   }
-  // if link pasted to another tab
   if (to.name === "LoginPage" && isAuthenticated && from.name === null) {
     return next({ name: "HomePage" });
   }

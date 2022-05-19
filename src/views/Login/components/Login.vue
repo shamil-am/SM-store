@@ -60,13 +60,13 @@ export default {
       setUser: "user/setUser",
     }),
     async submit() {
-      let response = await CustomerService.loginCustomer(this.email);
-      response &&
-        alertify
-          .alert()
-          .set({ transition: "zoom", message: `Daxil olmaq üçün ${this.email} ünvanına link göndərildi!` })
-          .set({ title: "Uğurlu əməliyyat!" })
-          .show();
+      try {
+        let response = await CustomerService.login(this.email, this.password);
+        response && this.setUser(response);
+        response && this.$router.push('/account')
+      } catch (error) {
+        alertify.alert().set({ transition: "zoom", message: error }).set({ title: "Xəta!" }).show();
+      }
     },
   },
 };
