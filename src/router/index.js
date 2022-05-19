@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
-import store from '../store'
+import store from "../store";
 
 const routes = [
   {
@@ -15,6 +15,7 @@ const routes = [
       { name: "AccountPage", path: "account", component: () => import("../views/Account"), meta: { requiresAuth: true } },
     ],
   },
+  { name: "Cart", path: "/cart", component: () => import("../views/Cart"), meta: { requiresAuth: true } },
   { name: "NotFound", path: "*", component: () => import("../common/NotFound.vue") },
 ];
 
@@ -24,7 +25,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   let isAuthenticated = store.getters["user/isAuthenticated"];
-  
+
   if (to.meta.requiresAuth && !isAuthenticated) {
     return next({ name: "LoginPage" });
   }

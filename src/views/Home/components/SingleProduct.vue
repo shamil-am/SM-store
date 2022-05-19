@@ -9,7 +9,7 @@
         <div class="text-subtitle-1">{{ product.price.raw }} ₼</div>
         <div class="text-subtitle-1">
           <v-btn class="ma-2" text icon color="blue lighten-2">
-            <v-icon>mdi-cart</v-icon>
+            <v-icon @click="addToCartHandler(product)">mdi-cart</v-icon>
           </v-btn>
         </div>
       </v-card-text>
@@ -21,7 +21,18 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+import alertify from "alertifyjs";
 export default {
   props: ["product"],
+  methods: {
+    ...mapMutations({
+      addToCart: "cart/addToCart",
+    }),
+    addToCartHandler(product) {
+      this.addToCart(product);
+      alertify.success(`${product.name} əlavə edildi!`);
+    },
+  },
 };
 </script>

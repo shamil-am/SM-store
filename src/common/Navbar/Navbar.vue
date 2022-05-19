@@ -12,7 +12,25 @@
         </v-col>
         <v-col cols="2">
           <v-btn icon @click="goToAccount"> <v-icon>mdi-account</v-icon> </v-btn>
-          <v-btn icon> <v-icon>mdi-cart</v-icon> </v-btn>
+          <v-menu offset-y>
+            <template v-slot:activator="{ on, attrs }">
+              <v-badge color="pink" :content="cartLength">
+                <v-btn icon color="red" dark v-bind="attrs" v-on="on">
+                  <v-icon>mdi-cart</v-icon>
+                </v-btn>
+              </v-badge>
+            </template>
+            <div v-if="cartLength > 1">
+              <v-list >
+                <v-list-item v-for="(item, index) in $store.state.cart.cart" :key="index">
+                  <v-list-item-title>{{ item.name }}</v-list-item-title>
+                </v-list-item>
+              </v-list>
+              <div class="pa-4">
+                <v-btn color="pink" dark @click="goToCart"> Səbətə get</v-btn>
+              </div>
+            </div>
+          </v-menu>
           <v-btn icon v-if="isAuthenticated" @click="logOut"> <v-icon>mdi-logout</v-icon> </v-btn>
         </v-col>
       </v-row>
@@ -44,16 +62,23 @@ export default {
     goToAccount() {
       this.$router.push({ name: "AccountPage" });
     },
+    goToCart(){
+      this.$router.push({ name: "Cart" });
+
+    },
     logOut() {
       this.setUser(null);
       this.$router.push({ name: "LoginPage" });
-      alert("Cixis edildi.")
+      alert("Cixis edildi.");
     },
   },
   computed: {
     ...mapGetters({
       isAuthenticated: "user/isAuthenticated",
     }),
+    cartLength() {
+      return this.$store.state.cart.cart.length;
+    },
   },
 };
 </script>

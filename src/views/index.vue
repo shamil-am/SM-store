@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-page">
     <Navbar />
     <router-view></router-view>
     <Footer />
@@ -16,3 +16,12 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.main-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+</style>

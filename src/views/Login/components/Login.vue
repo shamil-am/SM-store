@@ -63,7 +63,7 @@ export default {
       try {
         let response = await CustomerService.login(this.email, this.password);
         response && this.setUser(response);
-        response && this.$router.push('/account')
+        response && this.$router.push('/')
       } catch (error) {
         alertify.alert().set({ transition: "zoom", message: error }).set({ title: "Xəta!" }).show();
       }
