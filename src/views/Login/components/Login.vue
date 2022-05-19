@@ -40,7 +40,10 @@
 <script>
 import SocialButtons from "./SocialButtons.vue";
 import { ValidationObserver, ValidationProvider } from "vee-validate";
-
+import CustomerService from "../../../api/customer.service";
+import { mapMutations } from "vuex";
+import alertify from "alertifyjs";
+alertify.set("notifier", "position", "top-right");
 export default {
   components: {
     SocialButtons,
@@ -53,8 +56,17 @@ export default {
     password: "",
   }),
   methods: {
+    ...mapMutations({
+      setUser: "user/setUser",
+    }),
     async submit() {
-      alert("Welcome!");
+      let response = await CustomerService.loginCustomer(this.email);
+      response &&
+        alertify
+          .alert()
+          .set({ transition: "zoom", message: `Daxil olmaq üçün ${this.email} ünvanına link göndərildi!` })
+          .set({ title: "Uğurlu əməliyyat!" })
+          .show();
     },
   },
 };

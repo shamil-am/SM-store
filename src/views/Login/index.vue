@@ -10,7 +10,7 @@
         </v-col>
       </v-row>
       <v-row>
-        <component :is="activeTab"></component>
+        <component :is="activeTab" :setActiveTab="setActiveTab"></component>
       </v-row>
     </v-container>
   </div>

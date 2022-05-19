@@ -1,15 +1,8 @@
-import axios from "axios";
-
+import api from "./_axios";
+import Commerce from "@chec/commerce.js";
 class Customer {
   async addCustomer({ name, surname, phone, email }) {
-    const url = new URL("https://api.chec.io/v1/customers");
-    const checAPIKey = process.env.VUE_APP_SECRET_KEY;
     const id = new Date().getTime();
-    let headers = {
-      "X-Authorization": checAPIKey,
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    };
     let body = {
       firstname: name,
       lastname: surname,
@@ -17,14 +10,19 @@ class Customer {
       phone: phone,
       external_id: `MY_CRM_USER_${id}`,
     };
+
     try {
-      let customer = await axios.post(url, body, {
-        headers: headers,
-      });
+      let customer = await api.post("/customers", body);
       return customer;
     } catch (error) {
       return false;
     }
+  }
+
+  async loginCustomer(email) {
+    const commerce = new Commerce(process.env.VUE_APP_PUBLIC_KEY);
+    let response = await commerce.customer.login(email, "http://localhost:8080/#/account");
+    return response;
   }
 }
 

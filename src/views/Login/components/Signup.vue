@@ -100,6 +100,7 @@ export default {
     ValidationProvider,
     ValidationObserver,
   },
+  props: ["setActiveTab"],
   data: () => ({
     user: {
       name: "",
@@ -113,9 +114,15 @@ export default {
   methods: {
     async submit() {
       let response = await CustomerService.addCustomer(this.user);
-      response?.status === 201
-        ? alertify.success("Qeydiyyat uğurlu oldu!")
-        : alertify.alert().set({ transition: "zoom", message: "Xəta baş verdi!" }).show();
+
+      if (response?.status === 201) {
+        alertify.success("Qeydiyyat uğurlu oldu!");
+        setTimeout(() => {
+          this.setActiveTab("login");
+        }, 1000);
+        return;
+      }
+      alertify.alert().set({ transition: "zoom", message: "Xəta baş verdi!" }).set({ title: "Diqqət!" }).show();
     },
   },
 };

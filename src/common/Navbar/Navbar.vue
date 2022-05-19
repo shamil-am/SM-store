@@ -13,7 +13,7 @@
         <v-col cols="2">
           <v-btn icon @click="goToAccount"> <v-icon>mdi-account</v-icon> </v-btn>
           <v-btn icon> <v-icon>mdi-cart</v-icon> </v-btn>
-          <v-btn icon> <v-icon>mdi-logout</v-icon> </v-btn>
+          <v-btn icon v-if="isAuthenticated" @click="logOut"> <v-icon>mdi-logout</v-icon> </v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -33,12 +33,28 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
 import "./navbar.scss";
+
 export default {
   methods: {
+    ...mapMutations({
+      setUser: "user/setUser",
+    }),
     goToAccount() {
-      this.$router.push({ name: "LoginPage" });
+      this.$router.push({ name: "AccountPage" });
     },
+    logOut() {
+      this.setUser(null);
+      localStorage.clear();
+      this.$router.push({ name: "LoginPage" });
+      alert("Cixis edildi.")
+    },
+  },
+  computed: {
+    ...mapGetters({
+      isAuthenticated: "user/isAuthenticated",
+    }),
   },
 };
 </script>
