@@ -13,9 +13,6 @@
           </v-btn>
         </div>
       </v-card-text>
-      <v-btn class="ma-2 btn-like" text icon color="gray lighten-2">
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
     </v-card>
   </v-col>
 </template>
